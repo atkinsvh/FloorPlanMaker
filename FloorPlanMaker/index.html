@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Floorplan Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Floorplan Builder</h1>
+  </header>
+  <div class="pointers"><ul>This is a floor plan designer.</ul>
+    <ul>Things we hope to add to the floor plan designer:</ul>
+    <li>adjustable block height and width(finished)</li>
+    <li>adjustable grid height and width(incomplete)</li>
+    <li>random color picker for grid</li>
+    <li>randi color picker for block- randi,call upon slightly less random function; it excludes previous choices as in a real life marble chooser where the marcle is removed from the collection, because the random color choice needs to be not the grid color</li></div> 
+  <main>
+    <div id="grid-container">
+      <div id="grid"></div>
+      <div id="block-dimensions">50 x 50</div>
+    </div>
+    <div id="block">
+      <input type="number" id="width-input" value="50">
+      <input type="number" id="height-input" value="50">
+      <button id="add-block-button">Add Block</button>
+
+    </div>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>

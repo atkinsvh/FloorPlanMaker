@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grid Block Editor</title>
+    <style>
+      #grid-container {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+      }
+
+      #grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .block {
+        position: absolute;
+        background-color: green;
+        cursor: move;
+      }
+
+      #block {
+        width: 50px;
+        height: 50px;
+        background-color: green;
+        cursor: move;
+      }
+
+      #controls {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid-container">
+      <div id="grid"></div>
+      <div id="block"></div>
+    </div>
+    <div id="controls">
+      <label>
+        Width:
+        <input type="range" id="width-input" min="10" max="200" value="50">
+      </label>
+      <label>
+        Height:
+        <input type="range" id="height-input" min="10" max="200" value="50">
+      </label>
+      <button id="add-block-button">Add Block</button>
+      <div>Block dimensions: <span id="block-dimensions">50 x 50</span></div>
+      <a id="download-link" download="grid.png">Download Grid as Image</a>
+    </div>
+    <script>
+      // Select elements
+      const grid = document.getElementById('grid');
+      const blockDimensions = document.getElementById('block-dimensions');
+      const block = document.getElementById('block');
+      const addBlockButton = document.getElementById('add-block-button');
+      const downloadLink = document.getElementById('download-link');
+
+      // Variables to store block position and dimensions
+      let blockX = 0;
+      let blockY = 0;
+      let blockWidth = 50;
+      let blockHeight = 50;
+
+      // Function to create a new block element
+      function createBlock() {
+        const newBlock = document.createElement('div');
+        newBlock.className = 'block';
+        newBlock.style.width = blockWidth + 'px';
+        newBlock.style.height = blockHeight + 'px';
+        newBlock.style.left = blockX + 'px';
+        newBlock.style.top = blockY + 'px';
+        grid.appendChild(newBlock);
+      }
+
+      // Function to add block to the grid
+      function addBlockToGrid() {
+        // Reset block position
+        blockX = Math.floor((grid.offsetWidth - blockWidth) / 2);
+        blockY = Math.floor((grid.offsetHeight - blockHeight) / 2);
+        // Update block dimensions in UI
+        blockDimensions.textContent = blockWidth + ' x ' + blockHeight;
+        // Create and add block to the grid
+        createBlock();
+      }
+
+      // Event listeners for block size inputs
+      document.getElementById('width-input').addEventListener('input', function() {
+        blockWidth = parseInt(this.value);
+      });
+      document.getElementById('height-input').addEventListener('input', function() {
+        blockHeight = parseInt(this.value);
+      });
+
+      // Event listener for add block button
+      addBlockButton.addEventListener('click', addBlockToGrid);
+
+      // Event listeners for block movement
+      let activeBlock = null;
+      let initialX = null;
+      let initialY = null;
+
+      function dragStart
